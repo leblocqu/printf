@@ -12,88 +12,52 @@
 
 #include "../includes/ft_printf.h"
 
-int			ft_is_space(const char *format, int i)
+int		check_val_type(char c)
 {
-	if (format[i] == '\f' || format[i] == '\t' || format[i] == '\n'
-		|| format[i] == '\r' || format[i] == '\v' || format[i] == '\0')
+	if (c != 'c' && c != 's' && c != 'p' && c != 'd' && c != 'i' && c != 'o' && c != 'u' && c != 'x' && c != 'X')
 		return (1);
-	return (0);
+	else
+		return (0);
 }
 
-int		init_tab_args(const char *format, t_print *print, int nb)
+int		check_args(t_print *print, char *arg)
 {
 	int i;
-	int j;
-	int k;
-	int	len;
-	int	tmp;
 
 	i = 0;
-	j = 0;
-	k = 0;
-	len = 0;
-	tmp = 0;
-	char **res;
-	res = (char**)malloc(sizeof(char *) * nb + 1);
-	print->args = res;
-	printf("segfot\n");
-	while (format[i])
+	if (arg[i] == '\0')
 	{
-		if (format[i] == '%' && format[i + 1] == '%')
-		{
-			while(format[i] == '%')
-				i++;
-		}
-		if (format[i] == '%' && format[i + 1] != '%')
-		{
-			tmp = i + 1;
-			while (ft_is_space(format, i) != 1)
-			{	
-				len++;
-				i++;
-			}
-			if(!(print->args[j] = (char *)malloc(sizeof(char) * len + 1)))
-				return (0);
-			print->args[j][len] = '\0';
-			while (print->args[j][k])
-			{
-				print->args[j][k] = tmp;
-				tmp++;
-				k++;
-			}
-			nb++;
-			len = 0;
-			k = 0;
-		}
-		j++;
-		i++;
+		ft_putstr("Erreur à écrire\n");
+		return (-1);
+	}
+	while (check_val_type(arg[i]) == 1)
+	{
+		if (check_flag((char *)&arg[i], print) == -1)
+			return (-1);
+		if (check_width((char *)&arg[i], print) == -1)
+			return (-1);
+		if (check_precision((char *)&arg[i], print) == -1)
+			return (-1);
+		
 	}
 	return (1);
 }
 
-int			count_args(const char *format)
+int		check_all_args(t_print *print)
 {
 	int i;
-	int	nb;
 
 	i = 0;
-	nb = 0;
-	while(format[i])
+	while (print->str[i] != '\0')
 	{
-		if (format[i] == '%' && format[i + 1] == '%')
+		if (print->str[i] == '%' && print->str[i + 1] == '%')
+			i++;
+		else if (print->str[i] == '%' && print->str[i + 1] != '%')
 		{
-			while(format[i] == '%')
-				i++;
+			if (check_args(print, (char *)&print->str[i + 1]) == -1)
+				return (-1);
 		}
-		if (format[i] == '%' && format[i + 1] != '%')
-			nb++;
 		i++;
 	}
-	return (nb);
-}
-
-int			init_args(const char *format, t_print *print)
-{
-	init_tab_args(format, print, count_args(format));
 	return (1);
 }

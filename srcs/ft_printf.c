@@ -15,9 +15,12 @@
 int		ft_printf(const char *format, ...)
 {
 	t_print		*print;
+	va_list		args;
+	int			i;
 
-	ft_bzero(&print, sizeof(t_print));
-	if (!(format) || !(init_args(format, print)))
+	i = 0;
+	print->str = format;
+	if (!format || check_all_args(print) == -1)
 		return (0);
 	return (0);
 }

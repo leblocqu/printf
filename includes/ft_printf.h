@@ -13,14 +13,18 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include "../libft/libft.h"
+# include "../libft/test/libft.h"
+# include <stdarg.h>
 
 typedef struct	s_print
 {
-	char	**args;
+	const char	*str;
+	int			flag[12];
 }				t_print;
 
 int		ft_printf(const char *format, ...);
+int		check_all_args(t_print *print);
+int		check_args(t_print *print, char *arg);
 int		count_args(const char *fomat);
 int		init_args(const char *format, t_print *print);
 
