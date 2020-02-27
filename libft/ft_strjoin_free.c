@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnequ.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leblocqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/25 15:10:22 by leblocqu          #+#    #+#             */
-/*   Updated: 2019/05/09 18:23:54 by leblocqu         ###   ########.fr       */
+/*   Created: 2020/01/28 11:30:42 by leblocqu          #+#    #+#             */
+/*   Updated: 2020/01/28 11:30:46 by leblocqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strnequ(char const *s1, char const *s2, size_t n)
+char	*ft_strjoin_free(char *s1, char *s2, int i)
 {
-	size_t i;
+	int		len;
+	char	*str;
 
-	i = 0;
-	if (s1 == NULL || s2 == NULL)
+	if (!s1 && !s2)
+		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
+	len = ft_strlen(s1) + ft_strlen(s2);
+	if (!(str = (char *)malloc(sizeof(char *) * len + 1)))
 		return (0);
-	while (i < n)
-	{
-		if (s1[i] != s2[i])
-			return (0);
-		i++;
-	}
-	return (1);
+	if (str == NULL)
+		return (NULL);
+	ft_strcpy(str, s1);
+	ft_strcat(str, s2);
+	if (i == 1)
+		ft_strdel(&s1);
+	if (i == 2)
+		ft_strdel(&s2);
+	return (str);
 }

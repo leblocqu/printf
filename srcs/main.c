@@ -3,27 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: behaudeg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: leblocqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/10 14:56:14 by behaudeg          #+#    #+#             */
-/*   Updated: 2020/01/10 14:56:16 by behaudeg         ###   ########.fr       */
+/*   Created: 2020/02/27 20:06:54 by leblocqu          #+#    #+#             */
+/*   Updated: 2020/02/27 20:06:55 by leblocqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "../includes/ft_printf.h"
 
 /*void	aff_tab(t_print print)
 {
-
 }*/
 
-int		main(int argc, char **argv)
+int		main(void)
 {
-	(void)argc;
-	const char *str;
-
-	str = (const char *)argv[1];
-	ft_printf(str);
+	ft_printf("test = %d\n", 45);
 	return (0);
 }

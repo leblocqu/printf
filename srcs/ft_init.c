@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: behaudeg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: leblocqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/10 14:29:51 by behaudeg          #+#    #+#             */
-/*   Updated: 2020/01/13 09:45:24 by behaudeg         ###   ########.fr       */
+/*   Created: 2020/02/27 20:06:15 by leblocqu          #+#    #+#             */
+/*   Updated: 2020/02/27 20:06:17 by leblocqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,15 @@ int		check_args(t_print *print, char *arg)
 		ft_putstr("Erreur à écrire\n");
 		return (-1);
 	}
-	while (check_val_type(arg[i]) == 1)
-	{
-		if (check_flag((char *)&arg[i], print) == -1)
-			return (-1);
-		if (check_width((char *)&arg[i], print) == -1)
-			return (-1);
-		if (check_precision((char *)&arg[i], print) == -1)
-			return (-1);
-		
-	}
+	// while (check_val_type(arg[i]) == 1)
+	// {
+	// 	if (check_flag((char *)&arg[i], print) == -1)
+	// 		return (-1);
+	// 	if (check_width((char *)&arg[i], print) == -1)
+	// 		return (-1);
+	// 	if (check_precision((char *)&arg[i], print) == -1)
+	// 		return (-1);
+	// }
 	return (1);
 }
 
