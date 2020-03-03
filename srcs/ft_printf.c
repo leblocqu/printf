@@ -37,14 +37,10 @@ int		count_args(const char *str)
 int		ft_printf(const char *format, ...)
 {
 	t_print		*print;
-	va_list		args;
-	int			i;
 
-	i = 0;
 	print->str = format;
-	print->nb_args = count_args(print->str);
-	printf("nb args = %d\n", print->nb_args);
-	if (!format || check_all_args(print) == -1)
-		return (0);
-	return (0);
+	va_start(print->args, format);
+	if (!format || init_all(print) == -1)
+		return (0); //Pas oublier de free la.
+	return (0); // Et la aussi.
 }

@@ -18,6 +18,6 @@
 
 int		main(void)
 {
-	ft_printf("test = %d\n", 45);
+	ft_printf("test = %0-d\n", 45);
 	return (0);
 }
