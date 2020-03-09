@@ -14,37 +14,39 @@
 
 int		check_val_type(char c)
 {
-	if (c != 'c' && c != 's' && c != 'p' && c != 'd' && c != 'i' && c != 'o' && c != 'u' && c != 'x' && c != 'X')
+	if (c != 'c' && c != 's' && c != 'p' && c != 'd' && c != 'i' && c != 'o' && c != 'u' && c != 'x' && c != 'X' && c != 'f')
 		return (0);
 	else
 		return (1);
 }
 
-int		check_args(t_print *print, char *arg)
+int		check_args(t_print *print, t_flag *flag)
 {
 	int i;
 
 	i = 0;
-	if (arg[i] == '\0')
+	if (print->arg_i[i] == '\0')
 	{
-		ft_putstr("Erreur à écrire\n");
+		ft_putstr("There is a '%' without params.\n");
 		return (-1);
 	}
-	while (check_val_type(arg[i]) == 0)
+	while (check_val_type(print->arg_i[i]) == 0)
 	{
-		if (init_flag(print, (char *)&arg[i]) == -1)
+		if (init_flag(print, flag) == -1)
 			return (-1);
-	// 	if (check_width((char *)&arg[i], print) == -1)
-	// 		return (-1);
-	// 	if (check_precision((char *)&arg[i], print) == -1)
-	// 		return (-1);
-	//	if (check_size((char *)&arg[i], print) == -1)
-	//		return (-1);
+	 	if (init_width(print, flag) == -1)
+	 		return (-1);
+	 	if (init_precision(print, flag) == -1)
+			return (-1);
+		if (init_size(print, flag) == -1)
+			return (-1);
+		if (init_type(print, flag) == -1)
+			return (-1);
 	}
 	return (1);
 }
 
-int		check_init_args(t_print *print)
+int		check_init_args(t_print *print, t_flag *flag)
 {
 	int i;
 
@@ -55,7 +57,8 @@ int		check_init_args(t_print *print)
 			i++;
 		else if (print->str[i] == '%' && print->str[i + 1] != '%')
 		{
-			if (check_args(print, (char *)&print->str[i + 1]) == -1)
+			print->arg_i = (char *)&print->str[i + 1];
+			if (check_args(print, flag) == -1)
 				return (-1);
 			print->n++;
 		}
@@ -64,58 +67,52 @@ int		check_init_args(t_print *print)
 	return (1);
 }
 
-void	set_tab(t_print *print)
+void	set_tab(t_print *print, t_flag *flag)
 {
 	int i;
 	int j;
 
-	i = print->nb_args;
-	i--;
+	i = 0;
 	j = 0;
-	while (i >= 0)
+	while (i < print->nb_args)
 	{
-		while(print->all_flags[i].flag[j])
+		while(j < 13)
 		{	
-			print->all_flags[i].flag[j] = 0;
+			flag[i].flags[j] = 0;
 			j++;
 		}
-		i--;
+		i++;
+		j = 0;
 	}
 }
 
-void	aff_tab(t_print *print)
+void	aff_tab(t_print *print, t_flag *flag)
 {
 	int i;
 	int j;
 
-	i = print->nb_args;
-	i--;
+	i = 0;
 	j = 0;
-	while (i >= 0)
+	while (i < print->nb_args)
 	{
-		while(print->all_flags[i].flag[j])
+		while(j < 13)
 		{	
-			printf("test1\n");
-			printf("%d", print->all_flags[i].flag[j]);
+			printf("%d", flag[i].flags[j]);
 			j++;
 		}
 		printf("\n");
-		i--;
+		i++;
+		j = 0;
 	}
 }
 
-int		init_all(t_print *print)
+int		init_all(t_print *print, t_flag *flag)
 {
 	print->n = 0;
 	print->nb_args = count_args(print->str);
-	if (!(print->all_flags = malloc(sizeof(t_flag) * print->nb_args)))
-	{
-		ft_putstr("Error Malloc\n");
+	flag = ft_memalloc(sizeof(t_flag) * (print->nb_args));
+	set_tab(print, flag);
+	if (check_init_args(print, flag) == -1)
 		return (-1);
-	}
-	set_tab(print);
-	aff_tab(print);
-	if (check_init_args(print) == -1)
-		return (-1);
-	return (1);
+	return (show_args(print, flag));
 }

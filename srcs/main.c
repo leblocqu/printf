@@ -12,12 +12,9 @@
 
 #include "../includes/ft_printf.h"
 
-/*void	aff_tab(t_print print)
-{
-}*/
-
 int		main(void)
 {
-	ft_printf("test = %0-d\n", 45);
+	//printf("%+c\n", test);
+	ft_printf("\n");
 	return (0);
 }

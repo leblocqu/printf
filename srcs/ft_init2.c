@@ -1,48 +1,75 @@
 #include "../includes/ft_printf.h"
 
-int     init_flag(t_print *print, char *arg)
+int     init_flag(t_print *print,t_flag *flag)
 {
-    int i;
-
-    i = 0;
-    while (arg[i] == '0' || arg[i] == '+' || arg[i] == '-' || arg[i] == '#'
-        || arg[i] == ' ')
+    while (print->arg_i[0] == '0' || print->arg_i[0] == '+' || print->arg_i[0] == '-' || print->arg_i[0] == '#'
+        || print->arg_i[0] == ' ')
     {
-        printf("arg[%d] = %c\n", i, arg[i]);
-        if (arg[i] == '0')
-        {
-            printf("test\n");
-            printf("n = %d\n", print->n);
-            print->all_flags[print->n].flag[0] == 1;
-            printf("truc = %d\n", print->all_flags[print->n].flag[0]);
-        }
-        if (arg[i] == '+')
-            print->all_flags[print->n].flag[1] == 1;
-        if (arg[i] == '-')
-            print->all_flags[print->n].flag[2] == 1;
-        if (arg[i] == '#')
-            print->all_flags[print->n].flag[3] == 1;
-        if (arg[i] == ' ')
-            print->all_flags[print->n].flag[4] == 1;
-        i++;
+        if (print->arg_i[0] == '0')
+            flag[print->n].flags[0] = 1;
+        if (print->arg_i[0] == '+')
+            flag[print->n].flags[1] = 1;
+        if (print->arg_i[0] == '-')
+            flag[print->n].flags[2] = 1;
+        if (print->arg_i[0] == '#')
+            flag[print->n].flags[3] = 1;
+        if (print->arg_i[0] == ' ')
+            flag[print->n].flags[4] = 1;
+        print->arg_i++;
     }
-    printf("truc 2 = %d\n", print->all_flags[print->n].flag[2]);
-    if (check_flags(print) == -1)
+    return (check_flags(print, flag));
+}
+
+int     check_flags(t_print *print, t_flag *flag)
+{
+    if (flag[print->n].flags[0] == 1 && flag[print->n].flags[2] == 1)
+    {
+        ft_putstr("Flag '0' can't be use with flag '-'.\n");
         return (-1);
+    }
+    if (flag[print->n].flags[4] == 1 && flag[print->n].flags[1] == 1)
+    {
+        ft_putstr("Flag ' ' can't be use with flag '+'.\n");
+        return (-1);
+    }
     return (1);
 }
 
-int     check_flags(t_print *print)
+int     check_width(t_print *print, t_flag *flag)
 {
-    if (print->all_flags[print->n].flag[0] == 1 && print->all_flags[print->n].flag[2] == 1)
+    if (flag[print->n].flags[0] == 1 && flag[print->n].flags[6] == 1)
     {
-        ft_putstr("Flag '0' can't be use with flag '-'\n");
+        ft_putstr("Flag '0' can't be use with precision.\n");
         return (-1);
     }
-    if (print->all_flags[print->n].flag[4] == 1 && print->all_flags[print->n].flag[1] == 1)
+    return (1);
+}
+
+int		init_width(t_print *print, t_flag *flag)
+{
+    if (ft_isdigit(print->arg_i[0]) == 1)
     {
-        ft_putstr("Flag ' ' can't be use with flag '+'\n");
-        return (-1);
+        flag[print->n].flags[5] = ft_atoi(print->arg_i);
     }
-    return (-1);
+    while (ft_isdigit(print->arg_i[0]) == 1)
+    {
+        print->arg_i++;
+    }
+    return (check_width(print, flag));
+}
+
+int     init_precision(t_print *print, t_flag *flag)
+{
+    if (print->arg_i[0] == '.')
+    {
+        print->arg_i++;
+        flag[print->n].flags[6] = 1;
+        if (ft_isdigit(print->arg_i[0]) == 1)
+        {
+            flag[print->n].flags[7] = ft_atoi(print->arg_i);
+            while (ft_isdigit(print->arg_i[0]) == 1)
+                print->arg_i++;
+        }
+    }
+    return (1);
 }
