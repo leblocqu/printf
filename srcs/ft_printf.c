@@ -36,12 +36,16 @@ int		count_args(const char *str)
 
 int		ft_printf(const char *format, ...)
 {
-	t_print		*print;
-	t_flag		*flag;
+	t_print print;
+	t_flag *flag;
 
-	print->str = format;
-	va_start(print->args, format);
-	if (!format || init_all(print, flag) == -1)
+	ft_bzero(&print, sizeof(t_print));
+	va_start(print.args, format);
+	print.str = format;
+	print.nb_args = count_args(print.str);
+	flag = ft_memalloc(sizeof(t_flag) * (print.nb_args));
+	if (!format || init_all(&print, flag) == -1)
 		return (0); //Pas oublier de free la.
+	va_end(print.args);
 	return (0); // Et la aussi.
 }

@@ -14,7 +14,7 @@
 
 int		main(void)
 {
-	//printf("%+c\n", test);
-	ft_printf("\n");
+	printf("%.50s", "Coucou petit test\n");
+	//ft_printf("Str = %s tut", "Bonjour");
 	return (0);
 }

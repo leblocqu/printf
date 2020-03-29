@@ -29,6 +29,7 @@ typedef struct	s_print
 	int			n;
 	const char	*str;
 	int			nb_args;
+	int			ret;
 	va_list		args;
 }				t_print;
 
@@ -46,5 +47,8 @@ int     init_size(t_print *print, t_flag *flag);
 int     check_size(t_print *print, t_flag *flag);
 int     init_precision(t_print *print, t_flag *flag);
 int     init_type(t_print *print, t_flag *flag);
+int     show_all(t_print *print, t_flag *flag);
+int     show_args(t_print *print, t_flag *flag);
+int     ft_show_s(t_print *print, t_flag *flag);
 
 #endif

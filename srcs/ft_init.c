@@ -40,9 +40,9 @@ int		check_args(t_print *print, t_flag *flag)
 			return (-1);
 		if (init_size(print, flag) == -1)
 			return (-1);
-		if (init_type(print, flag) == -1)
-			return (-1);
 	}
+	if (init_type(print, flag) == -1)
+		return (-1);
 	return (1);
 }
 
@@ -64,6 +64,7 @@ int		check_init_args(t_print *print, t_flag *flag)
 		}
 		i++;
 	}
+	print->n = 0;
 	return (1);
 }
 
@@ -109,10 +110,9 @@ void	aff_tab(t_print *print, t_flag *flag)
 int		init_all(t_print *print, t_flag *flag)
 {
 	print->n = 0;
-	print->nb_args = count_args(print->str);
-	flag = ft_memalloc(sizeof(t_flag) * (print->nb_args));
 	set_tab(print, flag);
 	if (check_init_args(print, flag) == -1)
 		return (-1);
-	return (show_args(print, flag));
+	return (show_all(print, flag));
+	return (1);
 }
