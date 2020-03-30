@@ -114,5 +114,4 @@ int		init_all(t_print *print, t_flag *flag)
 	if (check_init_args(print, flag) == -1)
 		return (-1);
 	return (show_all(print, flag));
-	return (1);
 }

@@ -50,5 +50,7 @@ int     init_type(t_print *print, t_flag *flag);
 int     show_all(t_print *print, t_flag *flag);
 int     show_args(t_print *print, t_flag *flag);
 int     ft_show_s(t_print *print, t_flag *flag);
+int     ft_show_d(t_print *print, t_flag *flag);
+int		ft_numlen(int n);
 
 #endif
