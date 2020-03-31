@@ -24,7 +24,7 @@ int		ft_numlen(int n)
 int		main(void)
 {
 	
-	printf("le vrai:%-2.6d\n", -42);
-	ft_printf("le faux:%-2.6d\n", -42);
+	printf("le vrai:%- 6d\n", -42);
+	ft_printf("le faux:%- 6d\n", -42);
 	return (0);
 }

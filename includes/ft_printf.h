@@ -21,6 +21,7 @@ typedef struct s_flag
 {
 	char		letter_flag;
 	int			flags[13];
+	int			nb_int;
 }				t_flag;
 
 typedef struct	s_print
