@@ -50,8 +50,12 @@ int     init_precision(t_print *print, t_flag *flag);
 int     init_type(t_print *print, t_flag *flag);
 int     show_all(t_print *print, t_flag *flag);
 int     show_args(t_print *print, t_flag *flag);
-int     ft_show_s(t_print *print, t_flag *flag);
-int     ft_show_d(t_print *print, t_flag *flag);
+int     ft_s(t_print *print, t_flag *flag);
+int     ft_d(t_print *print, t_flag *flag);
 int		ft_numlen(int n);
+int		positif(int nb);
+int		ft_c(t_print *print, t_flag *flag);
+void    ft_d_0(t_print *print, t_flag *flag);
+
 
 #endif

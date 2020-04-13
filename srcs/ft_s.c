@@ -77,7 +77,7 @@ char    *ft_show_s_width(char *str, int len, int width)
     return (ret);
 }
 
-int     ft_show_s(t_print *print, t_flag *flag)
+int     ft_s(t_print *print, t_flag *flag)
 {
     char *str;
     int len;

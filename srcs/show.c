@@ -3,10 +3,12 @@
 int     show_args(t_print *print, t_flag *flag)
 {
 	if (flag[print->n].letter_flag == 's')
-		return (ft_show_s(print, flag));
+		return (ft_s(print, flag));
 	if (flag[print->n].letter_flag == 'd'
 		||flag[print->n].letter_flag == 'i')
-		return (ft_show_d(print, flag));
+		return (ft_d(print, flag));
+	if (flag[print->n].letter_flag == 'c')
+		return (ft_c(print, flag));
 	return (1);
 }
 

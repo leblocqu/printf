@@ -21,10 +21,23 @@ int		ft_numlen(int n)
 	return (1);
 }
 
+int		positif(int nb)
+{
+	if (nb < 0)
+		return (-nb);
+	else
+		return (nb);	
+}
+
 int		main(void)
 {
-	
-	printf("le vrai:%- 6d\n", -42);
-	ft_printf("le faux:%- 6d\n", -42);
+	// int *p;
+	// int a = 42;
+
+	// p = &a;
+	// intptr_t addr = (intptr_t)&a;
+	// ft_putnbr(addr);
+	printf("vrai printf:%0.7d\n", 42);
+	//ft_printf("faux printf:%-+2.2d\n", 42);
 	return (0);
 }
