@@ -9,6 +9,13 @@ int     show_args(t_print *print, t_flag *flag)
 		return (ft_d(print, flag));
 	if (flag[print->n].letter_flag == 'c')
 		return (ft_c(print, flag));
+	if (flag[print->n].letter_flag == 'x'
+		||flag[print->n].letter_flag == 'X')
+		return (ft_x(print, flag));
+	if (flag[print->n].letter_flag == 'u')
+		return (ft_u(print, flag));
+	if (flag[print->n].letter_flag == 'o')
+		return (ft_o(print, flag));
 	return (1);
 }
 

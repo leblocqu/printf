@@ -11,7 +11,7 @@ void    ft_show_moins(t_print *print, t_flag *flag, int len, int size)
     {
         if (flag[print->n].flags[1] == 1)
             ft_putchar('+');
-        if (flag[print->n].flags[4] == 1)    
+        if (flag[print->n].flags[4] == 1)
             ft_putchar(' ');
     }
     if (flag[print->n].flags[6] == 1)

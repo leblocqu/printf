@@ -14,7 +14,7 @@
 
 int		check_val_type(char c)
 {
-	if (c != 'c' && c != 's' && c != 'p' && c != 'd' && c != 'i' && c != 'o' && c != 'u' && c != 'x' && c != 'X' && c != 'f')
+	if (c != 'u' && c != 'c' && c != 's' && c != 'p' && c != 'd' && c != 'i' && c != 'o' && c != 'u' && c != 'x' && c != 'X' && c != 'f')
 		return (0);
 	else
 		return (1);

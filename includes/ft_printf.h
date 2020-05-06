@@ -19,9 +19,10 @@
 
 typedef struct s_flag
 {
-	char		letter_flag;
-	int			flags[13];
-	int			nb_int;
+	char			letter_flag;
+	int				flags[13];
+	int				nb_int;
+	unsigned int	u_int;
 }				t_flag;
 
 typedef struct	s_print
@@ -56,6 +57,16 @@ int		ft_numlen(int n);
 int		positif(int nb);
 int		ft_c(t_print *print, t_flag *flag);
 void    ft_d_0(t_print *print, t_flag *flag);
-
+int		ft_x(t_print *print, t_flag *flag);
+char	*ft_conv_hexa(unsigned int val, int indice);
+int		len_hexa(unsigned int val);
+int     ft_u(t_print *print, t_flag *flag);
+void    ft_x_zero(t_print *print, t_flag *flag, int len, int indice);
+void    ft_x_wmoins(t_print *print, t_flag *flag, int len, int indice);
+void    ft_x_moins(t_print *print, t_flag *flag, int len, int indice);
+void    ft_u_moins(t_print *print, t_flag *flag, int len);
+int		ft_ui_numlen(unsigned int n);
+int     ft_o(t_print *print, t_flag *flag);
+char	*ft_conv_octal(unsigned int val);
 
 #endif

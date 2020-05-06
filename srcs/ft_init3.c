@@ -93,9 +93,7 @@ int     check_type(t_print *print, t_flag *flag)
 
 int     init_type(t_print *print, t_flag *flag)
 {
-    if (print->arg_i[0] != 'c' && print->arg_i[0] != 's' && print->arg_i[0] != 'p'
-        && print->arg_i[0] != 'd' && print->arg_i[0] != 'i' && print->arg_i[0] != 'o'
-            && print->arg_i[0] != 'x' && print->arg_i[0] != 'X' && print->arg_i[0] != 'f')
+    if (check_val_type(print->arg_i[0]) == 0)
     {
         ft_putstr("There is a '%' without type.\n");
         return (-1);

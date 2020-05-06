@@ -83,6 +83,8 @@ int     ft_s(t_print *print, t_flag *flag)
     int len;
 
     str = va_arg(print->args, char *);
+    if (str == NULL)
+        ft_putstr("(Null)");
     len = ft_strlen(str);
     if (flag[print->n].flags[6] == 1 
         && flag[print->n].flags[7] < len)

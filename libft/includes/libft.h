@@ -71,5 +71,6 @@ char		*ft_itoa(int n);
 char		**ft_strsplit(char const *s, char c);
 int	        ft_getnbr(char *str);
 char		*ft_strjoin_free(char *s1, char *s2, int i);
+void        ft_ui_putnbr(unsigned int n);
 
 #endif
