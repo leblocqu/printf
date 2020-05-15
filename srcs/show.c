@@ -16,6 +16,8 @@ int     show_args(t_print *print, t_flag *flag)
 		return (ft_u(print, flag));
 	if (flag[print->n].letter_flag == 'o')
 		return (ft_o(print, flag));
+	if (flag[print->n].letter_flag == 'f')
+		return (ft_f(print, flag));	
 	return (1);
 }
 

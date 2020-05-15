@@ -16,6 +16,8 @@
 # include "../libft/includes/libft.h"
 # include <stdarg.h>
 # include <stdio.h>
+# include <time.h>
+# include <limits.h>
 
 typedef struct s_flag
 {
@@ -23,6 +25,7 @@ typedef struct s_flag
 	int				flags[13];
 	int				nb_int;
 	unsigned int	u_int;
+	double			f_d;
 }				t_flag;
 
 typedef struct	s_print
@@ -48,6 +51,7 @@ int		init_width(t_print *print, t_flag *flag);
 int     init_size(t_print *print, t_flag *flag);
 int     check_size(t_print *print, t_flag *flag);
 int     init_precision(t_print *print, t_flag *flag);
+int     check_precision(t_print *print, t_flag *flag);
 int     init_type(t_print *print, t_flag *flag);
 int     show_all(t_print *print, t_flag *flag);
 int     show_args(t_print *print, t_flag *flag);
@@ -68,5 +72,10 @@ void    ft_u_moins(t_print *print, t_flag *flag, int len);
 int		ft_ui_numlen(unsigned int n);
 int     ft_o(t_print *print, t_flag *flag);
 char	*ft_conv_octal(unsigned int val);
+int		len_octal(unsigned int val);
+int     ft_f(t_print *print, t_flag *flag);
+void	ft_putdouble(t_flag *flag, t_print *print, long double d);
+int		ft_doublelen(t_flag *flag, t_print *print, long double d, int precision);
+int		ft_longlen(t_print *print, t_flag *flag, int len, long int n);
 
 #endif

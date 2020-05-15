@@ -62,7 +62,7 @@ int     check_type_2(t_print *print, t_flag *flag)
         ft_putstr("Type 'c' can't be use with precision.\n");
         return (-1);
     }
-    return (1);
+    return (check_precision(print, flag));
 }
 
 int     check_type(t_print *print, t_flag *flag)

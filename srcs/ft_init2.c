@@ -35,12 +35,15 @@ int     check_flags(t_print *print, t_flag *flag)
     return (1);
 }
 
-int     check_width(t_print *print, t_flag *flag)
+int     check_precision(t_print *print, t_flag *flag)
 {
-    if (flag[print->n].flags[0] == 1 && flag[print->n].flags[6] == 1)
+    if (flag[print->n].letter_flag != 'f')
     {
-        ft_putstr("Flag '0' can't be use with precision.\n");
-        return (-1);
+        if (flag[print->n].flags[0] == 1 && flag[print->n].flags[6] == 1)
+        {
+            ft_putstr("Flag '0' can't be use with precision.\n");
+            return (-1);
+        }
     }
     return (1);
 }
@@ -55,7 +58,7 @@ int		init_width(t_print *print, t_flag *flag)
     {
         print->arg_i++;
     }
-    return (check_width(print, flag));
+    return (1);
 }
 
 int     init_precision(t_print *print, t_flag *flag)
