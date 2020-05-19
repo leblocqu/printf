@@ -25,6 +25,7 @@ typedef struct s_flag
 	int				flags[13];
 	int				nb_int;
 	unsigned int	u_int;
+	unsigned long long l_l;
 	double			f_d;
 }				t_flag;
 
@@ -62,8 +63,8 @@ int		positif(int nb);
 int		ft_c(t_print *print, t_flag *flag);
 void    ft_d_0(t_print *print, t_flag *flag);
 int		ft_x(t_print *print, t_flag *flag);
-char	*ft_conv_hexa(unsigned int val, int indice);
-int		len_hexa(unsigned int val);
+char	*ft_conv_hexa(unsigned long long val, int indice);
+int		len_hexa(unsigned long long val);
 int     ft_u(t_print *print, t_flag *flag);
 void    ft_x_zero(t_print *print, t_flag *flag, int len, int indice);
 void    ft_x_wmoins(t_print *print, t_flag *flag, int len, int indice);
@@ -74,8 +75,9 @@ int     ft_o(t_print *print, t_flag *flag);
 char	*ft_conv_octal(unsigned int val);
 int		len_octal(unsigned int val);
 int     ft_f(t_print *print, t_flag *flag);
-void	ft_putdouble(t_flag *flag, t_print *print, long double d);
-int		ft_doublelen(t_flag *flag, t_print *print, long double d, int precision);
-int		ft_longlen(t_print *print, t_flag *flag, int len, long int n);
+void	ft_putdouble(double d, int precision);
+int		ft_doublelen(double n, int precision, int len);
+int		ft_longlen( int len, long int n);
+int     ft_p(t_print *print, t_flag *flag);
 
 #endif

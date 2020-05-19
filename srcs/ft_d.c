@@ -106,7 +106,12 @@ int     ft_d(t_print *print, t_flag *flag)
     if (flag[print->n].nb_int == 0)
         len = 0;
     else
-        len = ft_numlen(positif(flag[print->n].nb_int));
+    {
+        if (flag[print->n].nb_int == -2147483648)
+            len = 10;
+        else
+            len = ft_numlen(positif(flag[print->n].nb_int));
+    }
     if (flag[print->n].flags[2] == 1)
         ft_d_moins(print, flag, len);
     else

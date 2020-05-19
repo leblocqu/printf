@@ -40,10 +40,14 @@ int		check_args(t_print *print, t_flag *flag)
 			return (-1);
 		if (init_size(print, flag) == -1)
 			return (-1);
+		if (init_type(print, flag) == -1)
+			return (-1);
 	}
-	if (init_type(print, flag) == -1)
-		return (-1);
-	return (1);
+	if (check_val_type(flag[print->n].letter_flag) == 1)
+		return (1);
+	else
+		return (init_type(print, flag));
+	
 }
 
 int		check_init_args(t_print *print, t_flag *flag)

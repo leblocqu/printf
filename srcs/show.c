@@ -18,6 +18,8 @@ int     show_args(t_print *print, t_flag *flag)
 		return (ft_o(print, flag));
 	if (flag[print->n].letter_flag == 'f')
 		return (ft_f(print, flag));	
+	if (flag[print->n].letter_flag == 'p')
+		return (ft_p(print, flag));	
 	return (1);
 }
 
@@ -40,7 +42,7 @@ int     show_all(t_print *print, t_flag *flag)
 		}
 		else if (print->str[i] == '%' && print->str[i + 1] == '%')
         {
-            ft_putstr("%%");
+            ft_putstr("%");
 			i++;
         }
 		i++;
