@@ -18,7 +18,7 @@ void    ft_show_moins(t_print *print, t_flag *flag, int len, int size)
         if (flag[print->n].flags[7] > len)
             while (++i < flag[print->n].flags[7] - len)
                 ft_putchar('0');
-    if (flag[print->n].flags[7] != 0 || positif(flag[print->n].nb_int) != 0)
+    if (flag[print->n].nb_int != 0 && flag[print->n].flags[7] != 0 && flag[print->n].flags[6] != 1)
         ft_putnbr(positif(flag[print->n].nb_int));
     i = -1;
     size = size + ft_numlen(positif(flag[print->n].nb_int));
@@ -102,9 +102,15 @@ int     ft_d(t_print *print, t_flag *flag)
 {
     int len;
 
+    len = 0;
     flag[print->n].nb_int = va_arg(print->args, int);
     if (flag[print->n].nb_int == 0)
-        len = 0;
+    { 
+        if (flag[print->n].flags[7] == 0 && flag[print->n].flags[6] == 1)
+            len = 0;
+        else
+            len = 1;
+    }
     else
     {
         if (flag[print->n].nb_int == -2147483648)
@@ -117,9 +123,9 @@ int     ft_d(t_print *print, t_flag *flag)
     else
     {
         ft_d_wmoins(print, flag, len);
-        if (flag[print->n].flags[7] != 0 
-            || positif(flag[print->n].nb_int) != 0)
-            ft_putnbr(positif(flag[print->n].nb_int));
+        if (flag[print->n].nb_int == 0 && flag[print->n].flags[7] == 0 && flag[print->n].flags[6] == 1)
+            return (1);
+        ft_putnbr(positif(flag[print->n].nb_int));
     }
     return (1);
 }

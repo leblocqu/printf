@@ -26,7 +26,7 @@ typedef struct s_flag
 	int				nb_int;
 	unsigned int	u_int;
 	unsigned long long l_l;
-	double			f_d;
+	long double		f_d;
 }				t_flag;
 
 typedef struct	s_print
@@ -79,5 +79,6 @@ void	ft_putdouble(double d, int precision);
 int		ft_doublelen(double n, int precision, int len);
 int		ft_longlen( int len, long int n);
 int     ft_p(t_print *print, t_flag *flag);
+double	positif_double(double nb);
 
 #endif
